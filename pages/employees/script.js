@@ -19,6 +19,24 @@ function closeSidebar() {
 
 //EMPLOYEE LIST
 
+let employees = [
+  {
+    name:"Art",
+    department:"IT",
+    salary:"600"
+  },
+  {
+    name:"Daki",
+    department:"Finance",
+    salary:"700"
+  },
+  {
+    name:"Lona",
+    department:"HR",
+    salary:"650"
+  },
+]
+
 let employeeList = document.getElementById("employee-list");
 let body=document.body;
 
@@ -45,18 +63,18 @@ li.appendChild(employeeSalary);
 ul.appendChild(li);
 employeeList.appendChild(ul);
 
-const addEmployeeHandler = (name,dept,salary)=>{
+const addEmployeeHandler = ()=>{
     let li=document.createElement('li');
     li.className="employee-li-item";
     let employeeName = document.createElement('div');
     employeeName.className="employee-name"
-    let employeeNameText = document.createTextNode("Art");
+    let employeeNameText = document.createTextNode(employees[0].name);
     let employeeDep = document.createElement('div');
     employeeDep.className="employee-department";
-    let employeeDepText = document.createTextNode("IT");
+    let employeeDepText = document.createTextNode(employees[0].department);
     let employeeSalary = document.createElement('div');
     employeeDep.className="employee-salary";
-    let employeeSalaryText = document.createTextNode("600");
+    let employeeSalaryText = document.createTextNode(employees[0].salary);
     employeeName.appendChild(employeeNameText);
     employeeDep.appendChild(employeeDepText);
     employeeSalary.appendChild(employeeSalaryText);
