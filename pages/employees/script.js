@@ -65,7 +65,7 @@ employeeList.appendChild(ul);
 
 const addEmployeeHandler = ()=>{
     let li=document.createElement('li');
-    li.className="employee-li-item";
+    li.className="employee-li";
     let employeeName = document.createElement('div');
     employeeName.className="employee-name"
     let employeeNameText = document.createTextNode(employees[0].name);

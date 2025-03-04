@@ -159,32 +159,27 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 5px;
+    background-color: white;
     border: 1px solid black;
     width: 100wh;
     text-align: center;
-    padding: 20px 0;
+    padding: 15px 0;
 }
-.employee-li-item{
+.employee-li:first-child{
     display: grid;
-    background-color: white;
+    background-color: #e6e8ed;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 5px;
     border: 1px solid black;
     width: 100wh;
     text-align: center;
-    padding: 15px 0;
+    padding: 20px 0;
 }
 
 .employee-li >div:first-child{
     border-right: 1px solid black;
 }
 .employee-li >div:nth-child(3){
-    border-left: 1px solid black;
-}
-.employee-li-item >div:first-child{
-    border-right: 1px solid black;
-}
-.employee-li-item>div:nth-child(3){
     border-left: 1px solid black;
 }
 
