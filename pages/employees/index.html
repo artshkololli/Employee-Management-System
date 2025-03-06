@@ -69,26 +69,42 @@
           <p class="font-weight-bold">EMPLOYEES</p>
           <p class="font-weight-bold">Filter By:</p>
         </div>
-        <div class="main-cards">
+        <div class="main-cards" id="nameFilter">
           <div class="card">
             <div class="card-inner">
               <p class="text-primary">NAME</p>
             </div>
           </div>
           <div class="card">
-            <div class="card-inner">
+            <div class="card-inner" id="departmentFilter">
               <p class="text-primary">DEPARTMENT</p>
             </div>
           </div>
           <div class="card">
-            <div class="card-inner">
+            <div class="card-inner" id="salaryFilter">
               <p class="text-primary">SALARY</p>
             </div>
           </div>
         </div>
         <div id="employee-list">
         </div>
-        <button id="addEmployeeBtn" onclick="addEmployeeHandler()">Add Employee</button>
+        <div id="addEmployee"><h4>Add Employee</h4>
+          <div id="addModal">
+            <div class="nameInput">
+              <label for="name">Name</label>
+              <input type="text" name="name" id="nameId">
+            </div>
+            <div class="departmentInput">
+              <label for="department">Department</label>
+              <input type="text" name="name" id="departmentId">
+            </div>
+            <div class="departmentInput">
+              <label for="salary">Salary</label>
+              <input type="number" name="salary" id="salaryId">
+            </div>
+            <button id="addEmployeeBtn">Add</button>
+          </div>
+        </div>
       </main>
     </div>
     <script src="script.js"></script>
