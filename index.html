@@ -8,9 +8,50 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <script type="module" src="loginAndRegister.js" defer></script>
     <title>EMS</title>
   </head>
   <body>
+    <div id="login-register">
+      <div id="register-container" class="container">
+        <div class="form_area">
+            <p class="title">Register</p>
+            <form id="registerForm">
+                <div class="form_group">
+                    <label class="sub_title" for="email">Email</label>
+                    <input placeholder="Enter your email" id="registerEmail" class="form_style" type="email">
+                </div>
+                <div class="form_group">
+                    <label class="sub_title" for="password">Password</label>
+                    <input placeholder="Enter your password" id="registerPassword" class="form_style" type="password">
+                </div>
+                <div class="signup-btn">
+                    <button id="register-btn" class="btn" type="submit">SIGN UP</button>
+                    <p>Have an Account? <a class="link" href="">Login Here!</a></p>
+                </div>
+            </form>
+        </div>
+      </div>
+      <div id="login-container" class="container">
+        <div class="form_area">
+            <p class="title">Login</p>
+            <form id="loginForm">
+                <div class="form_group">
+                    <label class="sub_title" for="email">Email</label>
+                    <input placeholder="Enter your email" id="loginEmail" class="form_style" type="email">
+                </div>
+                <div class="form_group">
+                    <label class="sub_title" for="password">Password</label>
+                    <input placeholder="Enter your password" id="loginPassword" class="form_style" type="password">
+                </div>
+                <div class="login-btn">
+                    <button id="login-btn" class="btn" type="submit">LOG IN</button>
+                    <p>No Account? <a class="link" href="">Register Here!</a></p>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
     <div class="grid-container">
       <!-- Header -->
       <header class="header">

@@ -21,6 +21,110 @@ body {
       "sidebar main main main";
     height: 100vh;
   }
+
+  /* ---------- LOGIN & REGISTER ---------- */
+
+#login-register{
+  background-color: rgb(184, 184, 184);
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+}
+
+.container {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+#login-container {
+  display: none;
+}
+
+.form_area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgb(94, 94, 100);
+  height: auto;
+  width: auto;
+  border: 2px solid #264143;
+  border-radius: 20px;
+  box-shadow: 3px 4px 0px 1px #E99F4C;
+}
+
+.title {
+  color: white;
+  font-weight: 900;
+  font-size: 1.5em;
+  margin:0;
+  margin-top: 30px;
+}
+
+.sub_title {
+  font-weight: 600;
+  margin: 5px 0;
+}
+
+.form_group {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  margin: 0 10px;
+}
+
+.form_style {
+  outline: none;
+  border: 2px solid #264143;
+  box-shadow: 3px 4px 0px 1px #E99F4C;
+  width: 290px;
+  padding: 12px 10px;
+  border-radius: 4px;
+  font-size: 15px;
+}
+
+.form_style:focus, .btn:focus {
+  box-shadow: 1px 2px 0px 0px #E99F4C;
+}
+
+.btn {
+  padding: 15px;
+  margin: 15px 0px;
+  width: 290px;
+  font-size: 15px;
+  background: rgb(180, 180, 242);
+  border-radius: 10px;
+  font-weight: 800;
+  color: white;
+}
+
+.btn:hover {
+  opacity: .9;
+}
+
+.link {
+  font-weight: 800;
+  color: white;
+  padding: 5px;
+}
+
+.signup-btn {
+  margin-top: 20px;
+}
+.signup-btn p{
+  color: white;
+}
+.login-btn {
+  margin-top: 20px;
+}
+.login-btn p{
+  color: white;
+}
+
   
   /* ---------- HEADER ---------- */
 
