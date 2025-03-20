@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
     <link rel="stylesheet" href="style.css" />
-
-    <title>EMS</title>
+    <title>Employees</title>
   </head>
   <body>
     <div class="grid-container">
@@ -21,7 +20,7 @@
         <div class="header-right">
           <span class="material-icons-outlined">notifications</span>
           <span class="material-icons-outlined">email</span>
-          <span class="material-icons-outlined">account_circle</span>
+          <span id="profile">Art</span>
         </div>
       </header>
       <!-- Sidebar -->
@@ -36,26 +35,26 @@
         </div>
         <ul class="sidebar-list">
           <li class="sidebar-list-item">
-            <a href="../../index.html">
+            <a href="../dashboard/index.html">
               <span class="material-icons-outlined">dashboard</span> Dashboard
             </a>
           </li>
           <li class="sidebar-list-item">
-            <a href="#">
+            <a href="#departments">
               <span class="material-icons-outlined">domain</span> Departments
             </a>
           </li>
           <li class="sidebar-list-item">
-            <a href="#">
+            <a href="#employees">
               <span class="material-icons-outlined">group</span> Employees
             </a>
           <li class="sidebar-list-item">
-            <a href="#">
+            <a href="#reports">
               <span class="material-icons-outlined">poll</span> Reports
             </a>
           </li>
           <li class="sidebar-list-item">
-            <a href="#">
+            <a href="#settings">
               <span class="material-icons-outlined">settings</span> Settings
             </a>
           </li>
@@ -65,47 +64,87 @@
       <main class="main-container">
         <div class="main-title">
           <p class="font-weight-bold">EMPLOYEES</p>
-          <p class="font-weight-bold">Filter By:</p>
+          <button id="addModal">Add Employee</button>
         </div>
-        <div class="main-cards" id="nameFilter">
-          <div class="card">
-            <div class="card-inner">
-              <p class="text-primary">NAME</p>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-inner" id="departmentFilter">
-              <p class="text-primary">DEPARTMENT</p>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-inner" id="salaryFilter">
-              <p class="text-primary">SALARY</p>
-            </div>
-          </div>
-        </div>
-        <div id="employee-list">
-        </div>
-        <div id="addEmployee"><h4>Add Employee</h4>
-          <div id="addModal">
-            <div class="nameInput">
+        <div class="modal-container"  id="empModal">
+          <div>
+            <form id="createForm" action="POST">
+              <h2>Add Employee</h2>
               <label for="name">Name</label>
-              <input type="text" name="name" id="nameId">
-            </div>
-            <div class="departmentInput">
-              <label for="department">Department</label>
-              <input type="text" name="name" id="departmentId">
-            </div>
-            <div class="departmentInput">
-              <label for="salary">Salary</label>
-              <input type="number" name="salary" id="salaryId">
-            </div>
-            <button id="addEmployeeBtn">Add</button>
+              <input type="text" name="name" id="name" placeholder="Name">
+              <label for="name">Department</label>
+              <input type="text" name="department" id="department" placeholder="Department">
+              <label for="name">Salary</label>
+              <input type="number" name="salary" id="salary" placeholder="Salary">
+              <button type="submit">Create</button>
+              <button type="button" id="cancelBtn">Cancel</button>
+            </form>
           </div>
+        </div>
+        <div id="deleteEmpModal" class="deleteModal">
+          <h3>Are you sure you want to delete?</h3>
+          <button type="button">Delete</button><button type="button" id="cancelDeleteBtn">Cancel</button>
+        </div>
+        <table class="empTable">
+          <thead>
+              <tr>
+                  <th>Name</th>
+                  <th>Department</th>
+                  <th>Salary</th>
+                  <th>Actions</th>
+              </tr>
+          </thead>
+          <tbody id="list"></tbody>
+        </table>
+        <!--Create Item Form-->
+        <div>
+          <h1>Create Product</h1>
+          <form class="itemForm" action="">
+            <input type="file" id="fileId" accept="image/*">
+            <input type="text" id="cardTitle" placeholder="Title">
+            <textarea id="cardDesc" placeholder="Description"></textarea>
+            <input type="number" id="priceId" placeholder="Price" min="1">
+            <button id="createBtn" type="submit">Create</button>
+          </form>
+          <div id="eComerce"></div>
+        </div>
+        <!--Checkout Modal-->
+        <div class="checkout-modal" id="checkout-modal">
+          <h1>Checkout</h1>
+          <!--Item-->
+          <div class="checkout-item" id="checkout-item"></div>
+            <div class="separator">
+              <hr class="line">
+              <p>Pay using credit card</p>
+              <hr class="line">
+            </div>
+            <div class="modal">
+            <form id="creditForm" class="form">
+              <div class="credit-card-info--form">
+                <!--Credit card form-->
+                <div class="input_container">
+                  <label for="name_field" class="input_label">Card holder full name</label>
+                  <input id="name_field" class="input_field" type="text" name="input-name" placeholder="Enter your full name" required>
+                </div>
+                <div class="input_container">
+                  <label for="card_field" class="input_label">Card Number</label>
+                  <input id="card_field" class="input_field" type="number" name="input-card" placeholder="0000 0000 0000 0000" required>
+                </div>
+                <div class="input_container">
+                  <label for="split_field" class="input_label">Expiry Date / CVV</label>
+                  <div class="split">
+                    <input id="date_field" class="input_field" type="text" name="date-name" min="01" max="31" placeholder="01" maxlength="2" required>
+                    <input id="date_field" class="input_field" type="text" name="date-name" min="25" max="99" placeholder="25" maxlength="2" required>
+                    <input id="cvv_field" class="input_field" type="text" name="cvv" placeholder="CVV" min="000" max="999" maxlength="3" required>
+                  </div>
+                </div>
+              </div>
+            <button type="submit" class="purchase--btn" id="purchase-btn">Checkout</button>
+          </form>
         </div>
       </main>
     </div>
-    <script src="script.js"></script>
+      <script src="script.js"></script>
   </body>
 </html>
-0
+

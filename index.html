@@ -8,7 +8,6 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
-    <script type="module" src="loginAndRegister.js" defer></script>
     <title>EMS</title>
   </head>
   <body>
@@ -17,6 +16,10 @@
         <div class="form_area">
             <p class="title">Register</p>
             <form id="registerForm">
+                <div class="form_group">
+                    <label class="sub_title" for="name">Name</label>
+                    <input placeholder="Enter your name" id="registerName" class="form_style" type="name">
+                </div>
                 <div class="form_group">
                     <label class="sub_title" for="email">Email</label>
                     <input placeholder="Enter your email" id="registerEmail" class="form_style" type="email">
@@ -27,7 +30,7 @@
                 </div>
                 <div class="signup-btn">
                     <button id="register-btn" class="btn" type="submit">SIGN UP</button>
-                    <p>Have an Account? <a class="link" href="">Login Here!</a></p>
+                    <p>Have an Account? <a class="link" href="#login-container">Login Here!</a></p>
                 </div>
             </form>
         </div>
@@ -52,104 +55,6 @@
         </div>
       </div>
     </div>
-    <div class="grid-container">
-      <!-- Header -->
-      <header class="header">
-        <div class="menu-icon" onclick="openSidebar()">
-          <span class="material-icons-outlined">menu</span>
-        </div>
-        <div class="header-left">
-          <span class="material-icons-outlined">search</span>
-        </div>
-        <div class="header-right">
-          <span class="material-icons-outlined">notifications</span>
-          <span class="material-icons-outlined">email</span>
-          <span class="material-icons-outlined">account_circle</span>
-        </div>
-      </header>
-      <!-- Sidebar -->
-      <aside id="sidebar">
-        <div class="sidebar-title">
-          <div class="sidebar-brand">
-            <span class="material-icons-outlined">inventory</span> Employee Management
-          </div>
-          <span class="material-icons-outlined" onclick="closeSidebar()"
-            >close</span
-          >
-        </div>
-        <ul class="sidebar-list">
-          <li class="sidebar-list-item">
-            <a href="#">
-              <span class="material-icons-outlined">dashboard</span> Dashboard
-            </a>
-          </li>
-          <li class="sidebar-list-item">
-            <a href="#">
-              <span class="material-icons-outlined">domain</span> Departments
-            </a>
-          </li>
-          <li class="sidebar-list-item">
-            <a href="/pages/employees/index.html">
-              <span class="material-icons-outlined">group</span> Employees
-            </a>
-          <li class="sidebar-list-item">
-            <a href="#">
-              <span class="material-icons-outlined">poll</span> Reports
-            </a>
-          </li>
-          <li class="sidebar-list-item">
-            <a href="#">
-              <span class="material-icons-outlined">settings</span> Settings
-            </a>
-          </li>
-        </ul>
-      </aside>
-      <!-- Main -->
-      <main class="main-container">
-        <div class="main-title">
-          <p class="font-weight-bold">DASHBOARD</p>
-        </div>
-        <div class="main-cards">
-          <div class="card">
-            <div class="card-inner">
-              <p class="text-primary">DEPARTMENTS</p>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-inner">
-              <p class="text-primary">EMPLOYEES</p>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-inner">
-              <p class="text-primary">REPORTS</p>
-            </div>
-          </div>
-        </div>
-        <!--Stats-->
-        <div class="main-stats">
-          <div class="card-stats">
-            <div class="card-stats-inner">
-              <span>No.Departments</span>
-              <p class="text-primary">3</p>
-            </div>
-          </div>
-          <div class="card-stats">
-            <div class="card-stats-inner">
-              <span>No.Employees</span>
-              <p class="text-primary">12</p>
-            </div>
-          </div>
-          <div class="card-stats">
-            <div class="card-stats-inner">
-              <span>No.Reports</span>
-              <p class="text-primary">5</p>
-            </div>
-          </div>
-        </div>
-      </main>
-    </div>
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
   </body>
 </html>
-0
