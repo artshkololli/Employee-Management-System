@@ -4,8 +4,9 @@ const getSingleProduct=()=>{
     fetch(`http://localhost:3000/employees/${productId}`)
     .then(res => res.json())
     .then(data =>{
-        console.log(data);
-        document.getElementById('title').innerHTML=data.id;
+        document.getElementById('title').innerHTML=data.title;
+        document.getElementById('imageId').src=data.image
+        document.getElementById('description').innerText=data.description
     })
 }
 
