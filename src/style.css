@@ -110,6 +110,7 @@ body {
   font-weight: 800;
   color: white;
   padding: 5px;
+  cursor: pointer;
 }
 
 .signup-btn {

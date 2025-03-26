@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+    <link rel="stylesheet" href="style.css" />
+    <title>Tickets</title>
+</head>
+<body>
+    <div class="grid-container">
+        <!-- Header -->
+        <header class="header">
+          <div class="menu-icon" onclick="openSidebar()">
+            <span class="material-icons-outlined">menu</span>
+          </div>
+          <div class="header-left">
+            <span class="material-icons-outlined">search</span>
+          </div>
+          <div class="header-right">
+            <span id="profile"></span>
+            <button id="logout">Logout</button>
+          </div>
+        </header>
+        <!-- Sidebar -->
+        <aside id="sidebar">
+          <div class="sidebar-title">
+            <div class="sidebar-brand">
+              <span class="material-icons-outlined">inventory</span> Employee Management
+            </div>
+            <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+          </div>
+          <ul class="sidebar-list">
+            <li class="sidebar-list-item">
+              <a href="../dashboard/index.html">
+                <span class="material-icons-outlined">dashboard</span> Dashboard
+              </a>
+            </li>
+            <li class="sidebar-list-item">
+              <a href="../employees/index.html">
+                <span class="material-icons-outlined">group</span> Employees
+              </a>
+            </li>
+            <li class="sidebar-list-item" style="background-color: rgba(255, 255, 255, 0.2);">
+              <a href="#">
+                <span class="material-icons-outlined">task</span> Tickets
+              </a>
+            </li>
+            <li class="sidebar-list-item">
+              <a href="../reports/index.html">
+                <span class="material-icons-outlined">poll</span> Reports
+              </a>
+            </li>
+          </ul>
+        </aside>
+        <!-- Main -->
+        <main class="main-container">
+          <div class="container">
+            <div class="content">
+              <div class="main-title">
+                <p class="font-weight-bold">Tickets</p>
+                <button id="addTicket">Add Ticket</button>
+              </div>
+              <div class="modal-container"  id="ticketModal">
+                <form id="createForm" action="POST">
+                  <h2>Add Ticket</h2>
+                  <label for="department">Department</label>
+                  <input type="text" name="department" id="department">
+                  <label for="name">Issue</label>
+                  <input type="text" name="issue" id="issue">
+                  <label for="status">Status</label>
+                  <select id="status" name="status">
+                    <option value="Pending">Open</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Closed">Closed</option>
+                    <option value="Urgent">Urgent</option>
+                  </select>
+                  <button type="submit">Create</button>
+                  <button type="button" id="cancelBtn">Cancel</button>
+                </form>
+              </div>
+              <div id="editTicketModal" class="editModal">
+                <form id="editForm">
+                  <h2>Edit Ticket</h2>
+                  <input type="text" name="department" id="departmentEdit" placeholder="Department">
+                  <input type="text" name="issue" id="issueEdit" placeholder="Issue">
+                  <select id="statusEdit" name="status">
+                    <option value="Open">Open</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Closed">Closed</option>
+                    <option value="Urgent">Urgent</option>
+                  </select>
+                  <button type="submit">Edit</button>
+                  <button type="button" id="cancelEdit">Cancel</button>
+                </form>
+              </div>
+              <table class="ticketTable">
+                <thead>
+                    <tr>
+                        <th>Ticket No.</th>
+                        <th>Department</th>
+                        <th>Issue</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="ticketList"></tbody>
+              </table>
+            </div>
+          </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

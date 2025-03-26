@@ -18,9 +18,8 @@
         <span class="material-icons-outlined">search</span>
       </div>
       <div class="header-right">
-        <span class="material-icons-outlined">notifications</span>
-        <span class="material-icons-outlined">email</span>
-        <span id="profile">Art</span>
+        <span id="profile"></span>
+        <button id="logout">Logout</button>
       </div>
     </header>
     <!-- Sidebar -->
@@ -34,28 +33,24 @@
         >
       </div>
       <ul class="sidebar-list">
-        <li class="sidebar-list-item">
-          <a href="#dashboard">
+        <li class="sidebar-list-item" style="background-color: rgba(255, 255, 255, 0.2)">
+          <a href="#">
             <span class="material-icons-outlined">dashboard</span> Dashboard
-          </a>
-        </li>
-        <li class="sidebar-list-item">
-          <a href="#departments">
-            <span class="material-icons-outlined">domain</span> Departments
           </a>
         </li>
         <li class="sidebar-list-item">
           <a href="../employees/index.html">
             <span class="material-icons-outlined">group</span> Employees
           </a>
+        </li>
         <li class="sidebar-list-item">
-          <a href="#reports">
-            <span class="material-icons-outlined">poll</span> Reports
+          <a href="../tickets/index.html">
+            <span class="material-icons-outlined">task</span> Tickets
           </a>
         </li>
         <li class="sidebar-list-item">
-          <a href="#settings">
-            <span class="material-icons-outlined">settings</span> Settings
+          <a href="../reports/index.html">
+            <span class="material-icons-outlined">poll</span> Reports
           </a>
         </li>
       </ul>
@@ -68,12 +63,12 @@
         <div class="main-cards">
           <div class="card">
             <div class="card-inner">
-              <p class="text-primary">DEPARTMENTS</p>
+              <p class="text-primary">EMPLOYEES</p>
             </div>
           </div>
           <div class="card">
             <div class="card-inner">
-              <p class="text-primary">EMPLOYEES</p>
+              <p class="text-primary">TICKETS</p>
             </div>
           </div>
           <div class="card">
@@ -85,22 +80,28 @@
         <!--Stats-->
         <div class="main-stats">
           <div class="card-stats">
-            <div class="card-stats-inner">
-              <span>No.Departments</span>
-              <p class="text-primary">3</p>
-            </div>
+            <a href="../employees/index.html">
+              <div class="card-stats-inner">
+                <span>No.Employees</span>
+                <p class="text-primary" id="employeeCount"></p>
+              </div>
+            </a>
           </div>
           <div class="card-stats">
-            <div class="card-stats-inner">
-              <span>No.Employees</span>
-              <p class="text-primary">12</p>
-            </div>
+            <a href="../tickets/index.html">
+              <div class="card-stats-inner">
+                <span>No.Tickets</span>
+                <p class="text-primary" id="ticketCount"></p>
+              </div>
+            </a>
           </div>
           <div class="card-stats">
-            <div class="card-stats-inner">
-              <span>No.Reports</span>
-              <p class="text-primary">5</p>
-            </div>
+            <a href="../reports/index.html">
+              <div class="card-stats-inner">
+                <span>No.Reports</span>
+                <p class="text-primary">0</p>
+              </div>
+            </a>
           </div>
         </div>
     </main>

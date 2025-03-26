@@ -1,15 +1,26 @@
 let createForm=document.getElementById('createForm');
+let editForm=document.getElementById('editForm');
 let employeeName=document.getElementById('name');
 let department=document.getElementById('department');
-let salary=document.getElementById('salary')
+let salary=document.getElementById('salary');
+let filterDep=document.getElementById('departmentFilter');
+let sortFilter=document.getElementById('sortFilter');
 
+let nameEdit=document.getElementById("nameEdit");
+let departmentEdit=document.getElementById("departmentEdit");
+let salaryEdit=document.getElementById("salaryEdit");
+
+let cancelEditBtn=document.getElementById('cancelEdit')
 let addModal=document.getElementById("addModal");
+let editModal=document.getElementById("editEmpModal");
 let deleteModal=document.getElementById("deleteEmpModal");
 let deleteCancelBtn=document.getElementById("cancelDeleteBtn");
 let cancelBtn=document.getElementById("cancelBtn");
+let deleteBtn=document.getElementById("deleteBtn");
 
 let isClicked=false;
 let isDeleteClicked=false;
+let isEdit=false;
 
 const showModal=()=>{
     if(!isClicked){
@@ -29,13 +40,25 @@ const hideModal=()=>{
     isClicked=false;
 }
 
-const showDeleteModal=()=>{
+const deleteEmpModal=(id)=>{
+    async function deleteEmployeeHandler() {
+        try {
+            let response = await fetch(`http://localhost:3000/employees/${id}`, {
+                method: "DELETE",
+            });
+            console.log(response);
+        } catch (err) {
+            console.log(err);
+        }
+    }
     if(!isDeleteClicked){
         deleteModal.style.display="block";
         isDeleteClicked=true;
     }else{
         cancelDeleteModal()
     }
+    deleteBtn.addEventListener('click',deleteEmployeeHandler);
+
 }
 
 const cancelDeleteModal=()=>{
@@ -43,26 +66,155 @@ const cancelDeleteModal=()=>{
     isDeleteClicked=false;
 }
 
+const editEmpModal=(id)=>{
+    async function editHandler(e) {
+        e.preventDefault();
+        let nameInput=nameEdit.value;
+        let departmentInput=departmentEdit.value;
+        let salaryInput=salaryEdit.value;
+    
+        const employee={
+            id:id,
+            name:nameInput,
+            department:departmentInput,
+            salary:salaryInput,
+        }
+        try{    
+            const res=await fetch(`http://localhost:3000/employees/${id}`,{
+                method:'PUT',
+                headers:{
+                    'content-type':'application/json'
+                },
+                body:JSON.stringify(employee)
+            });console.log("Employee Edited");
+            hideModal();
+        }catch(err){
+            console.log(err);
+        }
+        
+        readList();
+    }
+
+    if(!isEdit){
+        editModal.style.display="block";
+        isEdit=true;
+    }else{
+        cancelEditModal();
+        isEdit=false
+    }
+
+    editForm.addEventListener('submit', editHandler);
+
+}
+
+const cancelEditModal=()=>{
+    editModal.style.display="none";
+}
+
+deleteCancelBtn.addEventListener('click',deleteEmpModal);
+cancelEditBtn.addEventListener('click',cancelEditModal);
 addModal.addEventListener('click',showModal);
 cancelBtn.addEventListener('click',hideModal);
-deleteCancelBtn.addEventListener('click',showDeleteModal);
+//Sort
+const sortList=(e)=>{
+    e.preventDefault();
+    fetch('http://localhost:3000/employees')
+    .then(res=> {return res.json();})
+    .then(data=>{
+        const tableBody = document.getElementById("list");
+        tableBody.innerHTML=""
+        if(e.target.value==="Name"){
+            data.sort((a, b) => a.name.localeCompare(b.name)).forEach((emp)=>{
+                let tableRow=document.createElement('tr');
+                tableRow.innerHTML=`
+                    <td>${emp.name}</td>
+                    <td>${emp.department}</td>
+                    <td>${emp.salary}€</td>
+                    <td><button class="tableBtn" onclick="editEmpModal('${emp.id}')">Edit</button><button class="tableBtn" onclick="deleteEmpModal('${emp.id}')">Delete</button></td>
+                `
+                tableBody.appendChild(tableRow);
+            });
+        }else if(e.target.value==="Salary"){
+            data.sort((a, b) => a.salary.localeCompare(b.salary)).reverse().forEach((emp)=>{
+                let tableRow=document.createElement('tr');
+                tableRow.innerHTML=`
+                    <td>${emp.name}</td>
+                    <td>${emp.department}</td>
+                    <td>${emp.salary}€</td>
+                    <td><button class="tableBtn" onclick="editEmpModal('${emp.id}')">Edit</button><button class="tableBtn" onclick="deleteEmpModal('${emp.id}')">Delete</button></td>
+                `
+                tableBody.appendChild(tableRow);
+            });
+        }else{
+            data.sort((a, b) => a.department.localeCompare(b.department)).forEach((emp)=>{
+                let tableRow=document.createElement('tr');
+                tableRow.innerHTML=`
+                    <td>${emp.name}</td>
+                    <td>${emp.department}</td>
+                    <td>${emp.salary}€</td>
+                    <td><button class="tableBtn" onclick="editEmpModal('${emp.id}')">Edit</button><button class="tableBtn" onclick="deleteEmpModal('${emp.id}')">Delete</button></td>
+                `
+                tableBody.appendChild(tableRow);
+            });
+        }
+    })
+}
+sortFilter.addEventListener('change', sortList)
+//Filter
+const filterList=(e)=>{
+    e.preventDefault();
+    fetch('http://localhost:3000/employees')
+    .then(res=> {return res.json();})
+    .then(data=>{
+        const tableBody = document.getElementById("list");
+        tableBody.innerHTML=""
+        let filteredEmp=data.filter((emp)=>{
+            return emp.department===e.target.value;
+        })
+        if(e.target.value!=="All"){
+            filteredEmp.forEach((emp)=>{
+                let tableRow=document.createElement('tr');
+                tableRow.innerHTML=`
+                    <td>${emp.name}</td>
+                    <td>${emp.department}</td>
+                    <td>${emp.salary}€</td>
+                    <td><button class="tableBtn" onclick="editEmpModal('${emp.id}')">Edit</button><button class="tableBtn" onclick="deleteEmpModal('${emp.id}')">Delete</button></td>
+                `
+                tableBody.appendChild(tableRow);
+            });
+        }else{
+            data.forEach((emp)=>{
+                let tableRow=document.createElement('tr');
+                tableRow.innerHTML=`
+                    <td>${emp.name}</td>
+                    <td>${emp.department}</td>
+                    <td>${emp.salary}€</td>
+                    <td><button class="tableBtn" onclick="editEmpModal('${emp.id}')">Edit</button><button class="tableBtn" onclick="deleteEmpModal('${emp.id}')">Delete</button></td>
+                `
+                tableBody.appendChild(tableRow);
+            });
+        }
+    })
+}
+        
+filterDep.addEventListener('change', filterList)
 
 const readList=()=>{
     fetch('http://localhost:3000/employees')
     .then(res=> {return res.json();})
     .then(data=>{
         const tableBody = document.getElementById("list");
-        tableBody.innerHTML="";
+        tableBody.innerHTML=""
         data.forEach((emp)=>{
             let tableRow=document.createElement('tr');
             tableRow.innerHTML=`
                 <td>${emp.name}</td>
                 <td>${emp.department}</td>
-                <td>${emp.salary}</td>
-                <td><button class="tableBtn">Update</button><button class="tableBtn" onclick="showDeleteModal()">Delete</button></td>
+                <td>${emp.salary}€</td>
+                <td><button class="tableBtn" onclick="editEmpModal('${emp.id}')">Edit</button><button class="tableBtn" onclick="deleteEmpModal('${emp.id}')">Delete</button></td>
             `
             tableBody.appendChild(tableRow);
-    });
+        });
     })
 }
 
@@ -97,140 +249,23 @@ async function createHandler(e) {
 
 hideModal();
 cancelDeleteModal();
+cancelEditModal();
 
 createForm.addEventListener('submit', createHandler);
 window.addEventListener('load', readList);
 
-//eCommerce
+//Logout
 
-const cardContainer=document.getElementById('eComerce');
-const checkoutModal=document.getElementById('checkout-modal');
-const checkoutContainer=document.getElementById("checkout-item");
-const creditForm=document.getElementById("creditForm");
-let ul=document.createElement('ul');
-let heading=document.getElementById('cardTitle');
-let description=document.getElementById('cardDesc');
-const btn=document.getElementById("createBtn");
+const logoutBtn=document.getElementById('logout');
+let user=document.getElementById('profile');
 
+let userName=JSON.parse(localStorage.getItem('users'))[0].name
 
-const title=document.getElementById("titleId");
-const imageFile=document.getElementById("fileId");
-const image=document.getElementById("imgId");
-const price=document.getElementById("priceId")
+user.innerText=`Hello ${userName}`
 
-let isCheckout=false;
-
-let orders=[];
-
-const createPost=(e)=>{
-    e.preventDefault()
-    const file=imageFile.files[0];
-    console.log(file);
-    const renderImg=new FileReader();
-    renderImg.onload=(e)=>{
-        e.preventDefault();
-        console.log(e);
-        const base64Img=e.target.result;
-        const postData={
-            title:heading.value,
-            description:description.value,
-            price:price.value,
-            image:base64Img
-        }
-        fetch('http://localhost:3000/employees',{
-            method:'POST',
-            headers:{
-                'Content-Type':'application/json'
-            },
-            body:JSON.stringify(postData)
-        }).then(res=>{
-            return res.json()
-        }).then(data=>{
-            console.log(data);
-        })
-    }
-    renderImg.readAsDataURL(file);
+const logoutHandler=()=>{
+    window.location.replace('http://127.0.0.1:5500/src/index.html')
+    console.log("Hello");
 }
 
-const getData=()=>{
-    fetch('http://localhost:3000/employees')
-    .then(res=> res.json())
-    .then(data=>{
-        data.forEach(item=>{
-            let list=document.createElement("li");
-            let card=document.createElement("div");
-            card.className="card-container";
-            let cardImg=document.createElement('img');
-            cardImg.src=item.image;
-            let cardTitle=document.createElement('h2');
-            cardTitle.innerHTML=`${item.title}`;
-            let cardPrice=document.createElement('h2');
-            cardPrice.innerHTML=`${item.price}€`;
-            let cardDesc=document.createElement('textarea');
-            cardDesc.innerHTML=`${item.description}`;
-            let btnContainer=document.createElement('div');
-            btnContainer.className="btn-container";
-            let buyBtn=document.createElement('button');
-            let buyBtnText=document.createTextNode('Buy Now');
-            let viewBtn=document.createElement('button');
-            let viewBtnText=document.createTextNode('View More');
-            cardContainer.appendChild(ul);
-            ul.appendChild(list);
-            list.appendChild(card);
-            card.appendChild(cardImg);
-            card.appendChild(cardTitle);
-            card.appendChild(cardPrice);
-            card.appendChild(cardDesc);
-            card.appendChild(btnContainer);
-            btnContainer.appendChild(buyBtn);
-            btnContainer.appendChild(viewBtn);
-            buyBtn.appendChild(buyBtnText);
-            viewBtn.appendChild(viewBtnText);
-            console.log(data);
-                
-            const checkoutItem=()=>{
-                fetch('http://localhost:3000/employees/'+ item.id)
-                .then(res=> res.json())
-                .then(data=>{
-                    if(data.id===item.id){
-                        checkoutContainer.innerHTML=`
-                            <div>
-                                <ul>
-                                    <li>
-                                        <div>
-                                            <img src="${data.image}" style="height:100px">
-                                            <h2>${data.title}</h2>
-                                            <h2>Total:${data.price}€</h2>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        `
-                    }
-                })
-                if(!isCheckout){
-                    checkoutModal.style.display="block"
-                    isCheckout=true;
-                }else{
-                    checkoutHandler();
-                }
-            }
-            viewBtn.addEventListener('click' , ()=>{
-                window.location.href=`singleProduct.html?id=${item.id}`;
-            })
-            buyBtn.addEventListener('click',checkoutItem);
-        })
-    })
-}
-
-const checkoutHandler=()=>{
-    checkoutModal.style.display="none";
-    isCheckout=false;
-}
-
-getData();
-
-checkoutHandler();
-
-creditForm.addEventListener('submit',checkoutHandler)
-btn.addEventListener('click',createPost)
+logoutBtn.addEventListener('click', logoutHandler);

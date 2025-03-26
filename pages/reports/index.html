@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="grid-container">
+    <!-- Header -->
+        <header class="header">
+        <div class="menu-icon" onclick="openSidebar()">
+            <span class="material-icons-outlined">menu</span>
+        </div>
+        <div class="header-left">
+            <span class="material-icons-outlined">search</span>
+        </div>
+        <div class="header-right">
+            <span id="profile"></span>
+            <button id="logout">Logout</button>
+        </div>
+        </header>
+        <!-- Sidebar -->
+        <aside id="sidebar">
+        <div class="sidebar-title">
+            <div class="sidebar-brand">
+            <span class="material-icons-outlined">inventory</span> Employee Management
+            </div>
+            <span class="material-icons-outlined" onclick="closeSidebar()"
+            >close</span
+            >
+        </div>
+        <ul class="sidebar-list">
+            <li class="sidebar-list-item">
+            <a href="../dashboard/index.html">
+                <span class="material-icons-outlined">dashboard</span> Dashboard
+            </a>
+            </li>
+            <li class="sidebar-list-item">
+            <a href="../employees/index.html">
+                <span class="material-icons-outlined">group</span> Employees
+            </a>
+            </li>
+            <li class="sidebar-list-item">
+            <a href="../tickets/index.html">
+                <span class="material-icons-outlined">task</span> Tickets
+            </a>
+            </li>
+            <li class="sidebar-list-item" style="background-color: rgba(255, 255, 255, 0.2)">
+            <a href="#">
+                <span class="material-icons-outlined">poll</span> Reports
+            </a>
+            </li>
+        </ul>
+        </aside>
+        <!-- Main -->
+        <main class="main-container">
+
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

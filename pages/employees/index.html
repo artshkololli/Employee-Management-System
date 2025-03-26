@@ -18,9 +18,8 @@
           <span class="material-icons-outlined">search</span>
         </div>
         <div class="header-right">
-          <span class="material-icons-outlined">notifications</span>
-          <span class="material-icons-outlined">email</span>
-          <span id="profile">Art</span>
+          <span id="profile"></span>
+          <button id="logout">Logout</button>
         </div>
       </header>
       <!-- Sidebar -->
@@ -39,23 +38,19 @@
               <span class="material-icons-outlined">dashboard</span> Dashboard
             </a>
           </li>
-          <li class="sidebar-list-item">
-            <a href="#departments">
-              <span class="material-icons-outlined">domain</span> Departments
-            </a>
-          </li>
-          <li class="sidebar-list-item">
-            <a href="#employees">
+          <li class="sidebar-list-item" style="background-color: rgba(255, 255, 255, 0.2)">
+            <a href="#">
               <span class="material-icons-outlined">group</span> Employees
             </a>
+          </li>
           <li class="sidebar-list-item">
-            <a href="#reports">
-              <span class="material-icons-outlined">poll</span> Reports
+            <a href="../tickets/index.html">
+              <span class="material-icons-outlined">task</span> Tickets
             </a>
           </li>
           <li class="sidebar-list-item">
-            <a href="#settings">
-              <span class="material-icons-outlined">settings</span> Settings
+            <a href="../reports/index.html">
+              <span class="material-icons-outlined">poll</span> Reports
             </a>
           </li>
         </ul>
@@ -83,7 +78,25 @@
         </div>
         <div id="deleteEmpModal" class="deleteModal">
           <h3>Are you sure you want to delete?</h3>
-          <button type="button">Delete</button><button type="button" id="cancelDeleteBtn">Cancel</button>
+          <button type="button" id="deleteBtn">Delete</button><button type="button" id="cancelDeleteBtn">Cancel</button>
+        </div>
+        <div class="filter-container">
+          <div class="filter-dep">
+            <label for="departmentFilter">Department</label>
+            <select id="departmentFilter" name="departmentFilter">
+              <option value="All">All</option>
+              <option value="IT">IT</option>
+              <option value="HR">HR</option>
+              <option value="Sales">Sales</option>
+              <option value="Finance">Finance</option>
+            </select>
+            <label for="sortFilter">Sort by:</label>
+            <select id="sortFilter" name="sortFilter">
+              <option value="Name">Name</option>
+              <option value="Department">Department</option>
+              <option value="Salary">Salary</option>
+            </select>
+          </div>
         </div>
         <table class="empTable">
           <thead>
@@ -96,50 +109,14 @@
           </thead>
           <tbody id="list"></tbody>
         </table>
-        <!--Create Item Form-->
-        <div>
-          <h1>Create Product</h1>
-          <form class="itemForm" action="">
-            <input type="file" id="fileId" accept="image/*">
-            <input type="text" id="cardTitle" placeholder="Title">
-            <textarea id="cardDesc" placeholder="Description"></textarea>
-            <input type="number" id="priceId" placeholder="Price" min="1">
-            <button id="createBtn" type="submit">Create</button>
-          </form>
-          <div id="eComerce"></div>
-        </div>
-        <!--Checkout Modal-->
-        <div class="checkout-modal" id="checkout-modal">
-          <h1>Checkout</h1>
-          <!--Item-->
-          <div class="checkout-item" id="checkout-item"></div>
-            <div class="separator">
-              <hr class="line">
-              <p>Pay using credit card</p>
-              <hr class="line">
-            </div>
-            <div class="modal">
-            <form id="creditForm" class="form">
-              <div class="credit-card-info--form">
-                <!--Credit card form-->
-                <div class="input_container">
-                  <label for="name_field" class="input_label">Card holder full name</label>
-                  <input id="name_field" class="input_field" type="text" name="input-name" placeholder="Enter your full name" required>
-                </div>
-                <div class="input_container">
-                  <label for="card_field" class="input_label">Card Number</label>
-                  <input id="card_field" class="input_field" type="number" name="input-card" placeholder="0000 0000 0000 0000" required>
-                </div>
-                <div class="input_container">
-                  <label for="split_field" class="input_label">Expiry Date / CVV</label>
-                  <div class="split">
-                    <input id="date_field" class="input_field" type="text" name="date-name" min="01" max="31" placeholder="01" maxlength="2" required>
-                    <input id="date_field" class="input_field" type="text" name="date-name" min="25" max="99" placeholder="25" maxlength="2" required>
-                    <input id="cvv_field" class="input_field" type="text" name="cvv" placeholder="CVV" min="000" max="999" maxlength="3" required>
-                  </div>
-                </div>
-              </div>
-            <button type="submit" class="purchase--btn" id="purchase-btn">Checkout</button>
+        <div id="editEmpModal" class="editModal">
+          <form id="editForm">
+            <h2>Edit Employee</h2>
+            <input type="text" name="name" id="nameEdit" placeholder="Name">
+            <input type="text" name="department" id="departmentEdit" placeholder="Department">
+            <input type="number" name="salary" id="salaryEdit" placeholder="Salary">
+            <button type="submit">Edit</button>
+            <button type="button" id="cancelEdit">Cancel</button>
           </form>
         </div>
       </main>
