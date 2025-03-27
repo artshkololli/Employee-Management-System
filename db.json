@@ -97,6 +97,30 @@
       "department": "HR",
       "issue": "Recruting",
       "status": "Open"
+    },
+    {
+      "id": "ed13",
+      "department": "IT",
+      "issue": "Hardware",
+      "status": "Open"
+    },
+    {
+      "id": "d235",
+      "department": "Finance",
+      "issue": "Hardware",
+      "status": "Pending"
+    },
+    {
+      "id": "b451",
+      "department": "HR",
+      "issue": "Software",
+      "status": "Closed"
+    },
+    {
+      "id": "c3cb",
+      "department": "Sales",
+      "issue": "Software",
+      "status": "Urgent"
     }
   ]
 }

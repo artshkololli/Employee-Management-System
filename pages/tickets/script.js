@@ -46,11 +46,11 @@ const showList=()=>{
                 <td><button class="tableBtn" onclick="editTicketModal('${ticket.id}')">Edit</button><button class="tableBtn" onclick="deleteTicketHandler('${ticket.id}')">Delete</button></td>
             `
             tableBody.appendChild(tableRow);
-            if(ticket.status=="Open"){
+            if(ticket.status==="Open"){
                 tableRow.style.backgroundColor="lightgreen"
-            }else if(ticket.status=="Pending"){
+            }else if(ticket.status==="Pending"){
                 tableRow.style.backgroundColor="lightyellow"
-            }else if(ticket.status=="Closed"){
+            }else if(ticket.status==="Closed"){
                 tableRow.style.backgroundColor="lightblue"
             }
             else{

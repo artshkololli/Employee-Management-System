@@ -58,7 +58,7 @@ const registerHandler=(e)=>{
         emailErr.innerText=""
         passwordErr.innerText=""
 
-        const userData={name:name,email:email,password:password};
+        const userData={name:name,email:email};
     
         let users=[]
     
