@@ -333,4 +333,17 @@ body {
     .card-stats-inner >span{
         font-size: 20px;
     }
+    #createForm{
+        width: 300px;
+    }
+    .ticketTable{
+        font-size: 8px;
+    }
+    .tableBtn{
+        padding: 5px;
+        margin: 0;
+    }
+    #editForm{
+        width: 300px;
+    }
 }

@@ -232,4 +232,12 @@ body {
     .card-stats-inner >span{
       font-size: 20px;
     }
+    .stats-content{
+      display: flex;
+      width: 100vw;
+      flex-direction: column;
+    }
+    .dataStats h2{
+      font-size: 20px;
+    }
   }
