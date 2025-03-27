@@ -66,10 +66,13 @@
             <form id="createForm" action="POST">
               <h2>Add Employee</h2>
               <label for="name">Name</label>
+              <span id="nameErr"></span>
               <input type="text" name="name" id="name" placeholder="Name">
               <label for="name">Department</label>
+              <span id="departmentErr"></span>
               <input type="text" name="department" id="department" placeholder="Department">
               <label for="name">Salary</label>
+              <span id="salaryErr"></span>
               <input type="number" name="salary" id="salary" placeholder="Salary">
               <button type="submit">Create</button>
               <button type="button" id="cancelBtn">Cancel</button>
@@ -113,8 +116,11 @@
           <form id="editForm">
             <h2>Edit Employee</h2>
             <input type="text" name="name" id="nameEdit" placeholder="Name">
+            <span id="nameEditErr"></span>
             <input type="text" name="department" id="departmentEdit" placeholder="Department">
+            <span id="departmentEditErr"></span>
             <input type="number" name="salary" id="salaryEdit" placeholder="Salary">
+            <span id="salaryEditErr"></span>
             <button type="submit">Edit</button>
             <button type="button" id="cancelEdit">Cancel</button>
           </form>

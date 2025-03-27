@@ -65,6 +65,7 @@ const cancelDeleteModal=()=>{
     deleteModal.style.display="none";
     isDeleteClicked=false;
 }
+//Edit
 
 const editEmpModal=(id)=>{
     async function editHandler(e) {
@@ -72,7 +73,7 @@ const editEmpModal=(id)=>{
         let nameInput=nameEdit.value;
         let departmentInput=departmentEdit.value;
         let salaryInput=salaryEdit.value;
-    
+
         const employee={
             id:id,
             name:nameInput,
@@ -220,31 +221,54 @@ const readList=()=>{
 
 readList()
 
+let nameErr=document.getElementById('nameErr');
+let departmentErr=document.getElementById('departmentErr');
+let salaryErr=document.getElementById('salaryErr');
+
+
 async function createHandler(e) {
     e.preventDefault();
     let nameInput=employeeName.value;
     let departmentInput=department.value;
     let salaryInput=salary.value;
-
-    const employee={
-        name:nameInput,
-        department:departmentInput,
-        salary:salaryInput,
-    }
-    try{    
-        const res=await fetch('http://localhost:3000/employees',{
-            method:'POST',
-            headers:{
-                'content-type':'application/json'
-            },
-            body:JSON.stringify(employee)
-        });console.log("Employee Created");
-        hideModal();
-    }catch(err){
-        console.log(err);
-    }
     
-    readList();
+    if(nameInput === '' && departmentInput === '' && salaryInput === ''){
+        nameErr.innerText="Field cannot be empty!";
+
+        departmentErr.innerText="Field cannot be empty!";
+
+        salaryErr.innerText="Field cannot be empty!";
+
+    }else if(nameInput === '' || nameInput.trim().length <2 || nameInput.match(/[0-9]/)){
+        nameErr.innerText="Name must contain atleast 2 letters and no numbers!";
+    }else if(departmentInput === '' || departmentInput.trim().length <2 || departmentInput.match(/[0-9]/)){
+        departmentErr.innerText="Field cannot contain any numbers!";
+    }else{
+        nameErr.innerText=""
+        departmentErr.innerText=""
+        salaryErr.innerText=""
+
+            const employee={
+                name:nameInput,
+                department:departmentInput,
+                salary:salaryInput,
+            }
+            try{    
+                const res=await fetch('http://localhost:3000/employees',{
+                    method:'POST',
+                    headers:{
+                        'content-type':'application/json'
+                    },
+                    body:JSON.stringify(employee)
+                });
+                console.log("Employee Created");
+                
+                hideModal();
+            }catch(err){
+                console.log(err);
+            }
+            readList();
+    }
 }
 
 hideModal();
@@ -253,6 +277,25 @@ cancelEditModal();
 
 createForm.addEventListener('submit', createHandler);
 window.addEventListener('load', readList);
+
+//Sidebar
+
+let sidebarOpen = false;
+const sidebar = document.getElementById('sidebar');
+
+function openSidebar() {
+  if (!sidebarOpen) {
+    sidebar.classList.add('sidebar-responsive');
+    sidebarOpen = true;
+  }
+}
+
+function closeSidebar() {
+  if (sidebarOpen) {
+    sidebar.classList.remove('sidebar-responsive');
+    sidebarOpen = false;
+  }
+}
 
 //Logout
 

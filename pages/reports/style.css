@@ -123,6 +123,58 @@ body {
   
   /* ---------- MAIN ---------- */
 
+.main-container {
+  grid-area: main;
+  display: flex;
+  overflow-y: auto;
+  padding: 20px 20px;
+}
+
+.chart-Container{
+  width: 100vw;
+}
+
+.stats-content{
+  display: flex;
+  padding: 10px;
+}
+.dataStats h2{
+  font-size: 35px;
+  padding:20px ;
+}
+
+#myChart{
+  height: 500px;
+}
+
+.pieChart{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 500px;
+  height: 600px;
+}
+
+.pieChart canvas{
+  height: 500px;
+}
+
+.dataTable{
+  margin: 50px 0;
+  width: 100%;
+  height: 50px;
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: center;
+  font-weight: 600;
+}
+
+.dataTable th , tr , td{
+  width: 40px;
+  border: 1px solid black;
+}
+
+
   /* Medium <= 992px */
   @media screen and (max-width: 1000px) {
     .grid-container {

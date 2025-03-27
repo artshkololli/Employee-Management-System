@@ -28,32 +28,58 @@ const registerContainer=document.getElementById("register-container");
 const loginContainer=document.getElementById("login-container");
 const loginAndRegister=document.getElementById("login-register");
 
+let nameErr=document.getElementById('nameErr');
+let emailErr=document.getElementById('emailErr');
+let passwordErr=document.getElementById('passwordErr');
+let emailLoginErr=document.getElementById('emailLoginErr');
+let passwordLoginErr=document.getElementById('passwordLoginErr');
+
 const registerHandler=(e)=>{
     e.preventDefault();
     const name=document.getElementById("registerName").value;
     const email=document.getElementById("registerEmail").value;
     const password=document.getElementById("registerPassword").value;
 
-    const userData={name:name,email:email,password:password};
+    if(name === '' && email === '' && password === ''){
+        nameErr.innerText="Field cannot be empty!";
 
-    let users=[]
+        emailErr.innerText="Field cannot be empty!";
 
-    users.push(userData);
-    localStorage.setItem("users",JSON.stringify(users));
+        passwordErr.innerText="Field cannot be empty!";
 
-    createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-        const user = userCredential.user;
-        registerContainer.style.display="none";
-        loginContainer.style.display="flex";
-        
-        console.log("User Registered!");
-    })
-    .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-    });
+    }else if(name === '' || name.trim().length <2 || name.match(/[0-9]/)){
+        nameErr.innerText="Name must contain atleast 2 letters and no numbers!";
+    }else if(email === '' || email.trim().length <6 || !email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)){
+        emailErr.innerText="Please enter a valid email!";
+    }else if(password === '' || password.trim().length <8 || !password.match((/\d/)) || !password.match(/[^A-Za-z0-9]/)){
+        passwordErr.innerText="Must be 8 characters , numbers ,symbols!";
+    }else{
+        nameErr.innerText=""
+        emailErr.innerText=""
+        passwordErr.innerText=""
+
+        const userData={name:name,email:email,password:password};
+    
+        let users=[]
+    
+        users.push(userData);
+        localStorage.setItem("users",JSON.stringify(users));
+    
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            registerContainer.style.display="none";
+            loginContainer.style.display="flex";
+            
+            console.log("User Registered!");
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // ..
+        });
+    }
+
 }
 
 const loginHandler=(e)=>{
@@ -61,18 +87,30 @@ const loginHandler=(e)=>{
     const email=document.getElementById("loginEmail").value;
     const password=document.getElementById("loginPassword").value;
 
-    signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-        const user = userCredential.user;
-        loginAndRegister.style.display="none";
-        console.log("User Logged In!");
-        window.location.replace("../pages/dashboard/index.html")
-    })
-    .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-    });
+    if(email === '' && password === ''){
+        emailLoginErr.innerText="Field cannot be empty!";
+        passwordLoginErr.innerText="Field cannot be empty!";
+    }else if(email === '' || email.trim().length <6 || !email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)){
+        emailLoginErr.innerText="Please enter a valid email!";
+    }else if(password === '' || password.trim().length <8 || !password.match((/\d/)) || !password.match(/[^A-Za-z0-9]/)){
+        passwordLoginErr.innerText="Must be 8 characters , numbers ,symbols!";
+    }else{
+        emailLoginErr.innerText=""
+        passwordLoginErr.innerText=""
+        
+        signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            loginAndRegister.style.display="none";
+            console.log("User Logged In!");
+            window.location.replace("../pages/dashboard/index.html")
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // ..
+        });
+    }
 }
 
 const registerRedirect=()=>{

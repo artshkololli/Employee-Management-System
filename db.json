@@ -1,18 +1,6 @@
 {
   "employees": [
     {
-      "id": "30fa",
-      "name": "Art",
-      "department": "IT",
-      "salary": "600"
-    },
-    {
-      "id": "37f5",
-      "name": "Artan",
-      "department": "HR",
-      "salary": "500"
-    },
-    {
       "id": "87a8",
       "name": "Diana",
       "department": "Finance",
@@ -22,7 +10,7 @@
       "id": "7feb",
       "name": "Besnik",
       "department": "Sales",
-      "salary": "500"
+      "salary": "800"
     },
     {
       "id": "f5be",
@@ -41,6 +29,42 @@
       "name": "Gzim",
       "department": "IT",
       "salary": "750"
+    },
+    {
+      "id": "12de",
+      "name": "Melisa",
+      "department": "HR",
+      "salary": "1000"
+    },
+    {
+      "id": "9206",
+      "name": "Leon",
+      "department": "IT",
+      "salary": "950"
+    },
+    {
+      "id": "ce39",
+      "name": "Daki",
+      "department": "IT",
+      "salary": "800"
+    },
+    {
+      "id": "1a5c",
+      "name": "Lena",
+      "department": "Sales",
+      "salary": "770"
+    },
+    {
+      "id": "5a42",
+      "name": "Arben",
+      "department": "HR",
+      "salary": "920"
+    },
+    {
+      "id": "1447",
+      "name": "Art",
+      "department": "IT",
+      "salary": "670"
     }
   ],
   "tickets": [

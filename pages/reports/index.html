@@ -6,6 +6,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
     <title>Dashboard</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 </head>
 <body>
     <div class="grid-container">
@@ -57,7 +58,40 @@
         </aside>
         <!-- Main -->
         <main class="main-container">
-
+            <div class="chart-Container">
+                <div class="barChart">
+                    <canvas id="myChart"></canvas>
+                </div>
+                <div class="stats-content">
+                    <div class="pieChart">
+                        <canvas id="myPieChart"></canvas>
+                        
+                    </div>
+                    <div class="dataStats">
+                        <table class="dataTable">
+                            <thead>
+                                <tr>
+                                    <th>IT</th>
+                                    <th>HR</th>
+                                    <th>Finance</th>
+                                    <th>Sales</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="itData">0</td>
+                                    <td id="hrData">0</td>
+                                    <td id="financeData">0</td>
+                                    <td id="salesData">0</td>
+                                </tr>
+                            </tbody>
+                          </table>
+                        <h2 id="averageSalary"></h2>
+                        <h2 id="highestSalary"></h2>
+                        <h2 id="lowestSalary"></h2>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
     <script src="script.js"></script>

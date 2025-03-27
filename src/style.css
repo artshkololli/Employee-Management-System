@@ -77,6 +77,13 @@ body {
   margin: 0 10px;
 }
 
+.form_group span{
+  color: red;
+  margin-top: 10px;
+  padding: 7px;
+  text-wrap: wrap;
+}
+
 .form_style {
   outline: none;
   border: 2px solid #264143;
