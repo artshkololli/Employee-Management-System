@@ -216,6 +216,7 @@ const readList=()=>{
             `
             tableBody.appendChild(tableRow);
         });
+        localStorage.setItem('employeeData',JSON.stringify(data));
     })
 }
 

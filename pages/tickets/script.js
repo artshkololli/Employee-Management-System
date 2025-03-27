@@ -57,6 +57,7 @@ const showList=()=>{
                 tableRow.style.backgroundColor="red"
             }
         });
+        localStorage.setItem('ticketData',JSON.stringify(data));
     })
 }
 
